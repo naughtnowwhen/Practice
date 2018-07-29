@@ -4,10 +4,10 @@ var bubbles = [];
 
 function setup () {
   createCanvas(550, 350);
-  for (var j = 0; j < 5; j ++){
+  for (var j = 0; j < 100; j ++){
     bubbles[j] = {
-      x:200,
-      y:180,
+      x:random(0,width),
+      y:random(0, height),
 
 
       display: function () {
