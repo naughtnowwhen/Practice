@@ -1,4 +1,4 @@
-var num = 73;
+var num = 50;
 var nums = [25,55,100,75];
 var index = 0;
 var myArray = ['goose','gander','pheasant','blueJay'];
@@ -15,14 +15,16 @@ function setup() {
 
 function draw() {
   background(200);
-  ellipse(100,100,num, num);
-  ellipse(200,200,nums[2], nums[2]);
+  
+  ellipse(50,num, nums[0], nums[0]);
+  ellipse(100,2 * num, nums[1], nums[1]);
+  ellipse(200,3 * num,nums[2], nums[2]);
+  ellipse(300,4 * num,nums[3], nums[3]);
 
   fill(RandFill[0],RandFill[1],RandFill[2]);
   textSize(20);
-  text('rainbow', 20,200);
-  text(myArray[0],75,300);
-  text(myArray[index],150,350);
+  text(myArray[index], 20,200);
+  
 }
 
 //didn't work when it was in the draw loop, keep these separated!
