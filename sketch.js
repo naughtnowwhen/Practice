@@ -21,7 +21,8 @@ function draw () {
   }
   if (bubbles.length > 30) {
       // interesting, this will draw 30 bubbles (from int in this if statement) but then begin unshifting them, and then bubbles[i].draw causes an error because by i gets unshifted.
-      bubbles.unshift(0);
+      bubbles.splice(0,1);
+      //sweet! I changed from unshift(0) to splice(0,1) and now it works properly, it makes 30 bubbles and then starts deleting the oldest bubbles. This splice isn't interferring like unshift was. 
   }
 
 }
