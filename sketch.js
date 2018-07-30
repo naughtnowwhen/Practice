@@ -1,23 +1,29 @@
 var bubbles = [];
-var x = 100;
-var y = 200;
+var bubbleSize = 20;
+
 function setup () {
-  createCanvas(550, 350);
+  createCanvas(1000, 1000);
+// with this commented out, new bubble objects are only created with the next function, mouse dragged
   for (var j = 0; j < 10; j ++){
-    bubbles[j] = new Bubble(x,y);
+    bubbles[j] = new Bubble(random(width),random(height));
   }
 }
 
-function mousePressed(){
-  bubbles.push(new Bubble());
+function mouseDragged(){
+  bubbles.push(new Bubble(mouseX, mouseY));
 }
 
 function draw () {
-  background(10);
+  background(150);
   for (var i = 0; i < bubbles.length; i ++) {
     bubbles[i].move();
     bubbles[i].display();
   }
+  if (bubbles.length > 30) {
+      // interesting, this will draw 30 bubbles (from int in this if statement) but then begin unshifting them, and then bubbles[i].draw causes an error because by i gets unshifted.
+      bubbles.unshift(0);
+  }
+
 }
 
 
@@ -26,15 +32,28 @@ function Bubble (x,y) {
   this.x = x;
   this.y = y;
   this.display = function () {
-    stroke(255);
-    noFill();
-    ellipse(this.x, this.y, 10, 10);
+    stroke(10);
+    fill(random(10,255),0,160,40);
+    ellipse(this.x, this.y, bubbleSize, bubbleSize);
   };
   this.move = function () {
     this.x = this.x + random(-1,1);
     this.y = this.y + random(-1,1);
   };
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // function setup () {
 //   createCanvas(550, 350);
