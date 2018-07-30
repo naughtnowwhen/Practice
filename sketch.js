@@ -1,9 +1,10 @@
 var bubbles = [];
-
+var x = 100;
+var y = 200;
 function setup () {
   createCanvas(550, 350);
   for (var j = 0; j < 10; j ++){
-    bubbles[j] = new Bubble();
+    bubbles[j] = new Bubble(x,y);
   }
 }
 
@@ -21,9 +22,9 @@ function draw () {
 
 
 
-function Bubble () {
-  this.x = random(0, width);
-  this.y = random(0, height);
+function Bubble (x,y) {
+  this.x = x;
+  this.y = y;
   this.display = function () {
     stroke(255);
     noFill();
