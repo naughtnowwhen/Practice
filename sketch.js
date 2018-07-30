@@ -3,28 +3,18 @@ var bubbleSize = 20;
 
 function setup () {
   createCanvas(1000, 1000);
-// with this commented out, new bubble objects are only created with the next function, mouse dragged
-  for (var j = 0; j < 10; j ++){
-    bubbles[j] = new Bubble(random(width),random(height));
-  }
 }
 
-function mouseDragged(){
+function mousePressed(){
   bubbles.push(new Bubble(mouseX, mouseY));
 }
 
 function draw () {
   background(150);
   for (var i = 0; i < bubbles.length; i ++) {
-    bubbles[i].move();
+    bubbles[i].update();
     bubbles[i].display();
   }
-  if (bubbles.length > 30) {
-      // interesting, this will draw 30 bubbles (from int in this if statement) but then begin unshifting them, and then bubbles[i].draw causes an error because by i gets unshifted.
-      bubbles.splice(0,1);
-      //sweet! I changed from unshift(0) to splice(0,1) and now it works properly, it makes 30 bubbles and then starts deleting the oldest bubbles. This splice isn't interferring like unshift was. 
-  }
-
 }
 
 
@@ -32,14 +22,17 @@ function draw () {
 function Bubble (x,y) {
   this.x = x;
   this.y = y;
+  this.lifespan = 255;
   this.display = function () {
     stroke(10);
-    fill(random(10,255),0,160,40);
+    fill(random(10,255), this.lifespan);
     ellipse(this.x, this.y, bubbleSize, bubbleSize);
   };
-  this.move = function () {
+  this.update = function () {
     this.x = this.x + random(-1,1);
     this.y = this.y + random(-1,1);
+    this.lifespan--;
+
   };
 }
 
