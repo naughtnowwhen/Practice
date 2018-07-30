@@ -2,9 +2,13 @@ var bubbles = [];
 
 function setup () {
   createCanvas(550, 350);
-  for (var j = 0; j < 100; j ++){
+  for (var j = 0; j < 10; j ++){
     bubbles[j] = new Bubble();
   }
+}
+
+function mousePressed(){
+  bubbles.push(new Bubble());
 }
 
 function draw () {
@@ -14,6 +18,8 @@ function draw () {
     bubbles[i].display();
   }
 }
+
+
 
 function Bubble () {
   this.x = random(0, width);
